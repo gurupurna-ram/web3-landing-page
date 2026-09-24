@@ -1,1 +1,1641 @@
+/* =====================================================
+   WEB3 LANDING PAGE - COMPLETE STYLE.CSS
+   ===================================================== */
 
+
+/* =====================================================
+   ROOT VARIABLES
+   ===================================================== */
+
+:root {
+    --background: #050510;
+    --background-light: #0b0b1c;
+    --card: #101024;
+    --card-light: #171735;
+
+    --purple: #8b5cf6;
+    --purple-light: #a78bfa;
+    --blue: #3b82f6;
+    --cyan: #22d3ee;
+    --pink: #ec4899;
+
+    --white: #ffffff;
+    --text: #d1d5db;
+    --text-light: #9ca3af;
+
+    --border: rgba(139, 92, 246, 0.25);
+
+    --gradient: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #3b82f6,
+        #22d3ee
+    );
+
+    --gradient-pink: linear-gradient(
+        135deg,
+        #ec4899,
+        #8b5cf6,
+        #3b82f6
+    );
+}
+
+
+/* =====================================================
+   RESET
+   ===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(139, 92, 246, 0.08),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 60%,
+            rgba(34, 211, 238, 0.06),
+            transparent 30%
+        ),
+        var(--background);
+
+    color: var(--white);
+
+    line-height: 1.6;
+
+    overflow-x: hidden;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =====================================================
+   CUSTOM SCROLLBAR
+   ===================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        var(--purple),
+        var(--blue)
+    );
+
+    border-radius: 20px;
+}
+
+
+/* =====================================================
+   NAVBAR
+   ===================================================== */
+
+.navbar {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 7%;
+
+    background: rgba(5, 5, 16, 0.78);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    z-index: 1000;
+}
+
+
+/* ---------- LOGO ---------- */
+
+.logo {
+    font-size: 1.6rem;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color: var(--white);
+
+    text-shadow:
+        0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+.logo span {
+    color: var(--cyan);
+}
+
+
+/* ---------- NAVIGATION LINKS ---------- */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    list-style: none;
+}
+
+.nav-links a {
+    position: relative;
+
+    color: var(--text);
+
+    font-size: 0.95rem;
+
+    transition:
+        color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--gradient);
+
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--white);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+
+/* =====================================================
+   CONNECT WALLET BUTTON
+   ===================================================== */
+
+.connect-wallet {
+    position: relative;
+
+    padding: 11px 22px;
+
+    border: 1px solid var(--purple);
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            rgba(139, 92, 246, 0.08),
+            rgba(59, 130, 246, 0.08)
+        );
+
+    color: var(--white);
+
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.connect-wallet:hover {
+    transform: translateY(-3px);
+
+    background: var(--gradient);
+
+    box-shadow:
+        0 8px 25px rgba(139, 92, 246, 0.35);
+}
+
+.connect-wallet.connected {
+    border-color: var(--cyan);
+
+    background:
+        rgba(34, 211, 238, 0.1);
+
+    color: var(--cyan);
+}
+
+
+/* =====================================================
+   HERO SECTION
+   ===================================================== */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 150px 7% 100px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+/* ---------- HERO GLOW EFFECTS ---------- */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 550px;
+    height: 550px;
+
+    top: 5%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139, 92, 246, 0.2),
+            transparent 70%
+        );
+
+    filter: blur(40px);
+
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    top: 0;
+    left: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(139, 92, 246, 0.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(139, 92, 246, 0.04) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent
+    );
+
+    pointer-events: none;
+}
+
+
+/* ---------- HERO CONTENT ---------- */
+
+.hero-content {
+    max-width: 900px;
+
+    position: relative;
+
+    z-index: 2;
+}
+
+
+/* ---------- EYEBROW ---------- */
+
+.eyebrow {
+    display: inline-block;
+
+    color: var(--cyan);
+
+    letter-spacing: 3px;
+
+    font-size: 0.78rem;
+
+    font-weight: bold;
+
+    margin-bottom: 22px;
+
+    text-transform: uppercase;
+}
+
+
+/* ---------- HERO HEADING ---------- */
+
+.hero h1 {
+    font-size: clamp(3rem, 7vw, 6.5rem);
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 28px;
+
+    text-shadow:
+        0 0 30px rgba(139, 92, 246, 0.15);
+}
+
+.gradient-text {
+    display: inline-block;
+
+    background: var(--gradient);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation: gradientMove 5s ease-in-out infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    50% {
+        filter: hue-rotate(25deg);
+    }
+
+    100% {
+        filter: hue-rotate(0deg);
+    }
+}
+
+
+/* ---------- HERO PARAGRAPH ---------- */
+
+.hero p {
+    max-width: 680px;
+
+    margin: 0 auto;
+
+    color: var(--text-light);
+
+    font-size: 1.08rem;
+
+    line-height: 1.9;
+}
+
+
+/* ---------- HERO BUTTONS ---------- */
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 38px;
+}
+
+.primary-btn,
+.secondary-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 28px;
+
+    border-radius: 30px;
+
+    font-size: 0.95rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.primary-btn {
+    background: var(--gradient);
+
+    color: var(--white);
+
+    border: none;
+
+    box-shadow:
+        0 8px 25px rgba(139, 92, 246, 0.2);
+}
+
+.primary-btn:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 35px rgba(139, 92, 246, 0.4);
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.03);
+
+    color: var(--white);
+
+    border: 1px solid var(--border);
+}
+
+.secondary-btn:hover {
+    transform: translateY(-4px);
+
+    background: rgba(139, 92, 246, 0.12);
+
+    border-color: var(--purple-light);
+}
+
+
+/* =====================================================
+   GENERAL SECTIONS
+   ===================================================== */
+
+section {
+    padding: 110px 7%;
+
+    position: relative;
+}
+
+.section-heading {
+    max-width: 750px;
+
+    margin: 0 auto 65px;
+
+    text-align: center;
+}
+
+.section-heading h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+
+    line-height: 1.2;
+
+    margin-bottom: 18px;
+}
+
+.section-heading p {
+    color: var(--text-light);
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   WEB EVOLUTION TIMELINE
+   ===================================================== */
+
+.timeline {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.timeline-card {
+    position: relative;
+
+    padding: 35px 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139, 92, 246, 0.08),
+            rgba(16, 16, 36, 0.95)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.timeline-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: var(--gradient);
+}
+
+.timeline-card:hover {
+    transform: translateY(-10px);
+
+    border-color: var(--purple-light);
+
+    box-shadow:
+        0 15px 45px rgba(139, 92, 246, 0.13);
+}
+
+.timeline-number {
+    font-size: 2.5rem;
+
+    font-weight: 800;
+
+    color: var(--purple-light);
+
+    margin-bottom: 12px;
+}
+
+.timeline-card h3 {
+    font-size: 1.35rem;
+
+    margin-bottom: 12px;
+}
+
+.timeline-card p {
+    color: var(--text-light);
+
+    margin-top: 8px;
+}
+
+
+/* =====================================================
+   ECOSYSTEM SECTION
+   ===================================================== */
+
+.ecosystem {
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(139, 92, 246, 0.025),
+            transparent
+        );
+}
+
+.ecosystem-grid {
+    max-width: 1150px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 28px;
+}
+
+
+/* =====================================================
+   ECOSYSTEM CARDS
+   ===================================================== */
+
+.eco-card {
+    position: relative;
+
+    padding: 32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(23, 23, 53, 0.95),
+            rgba(10, 10, 27, 0.95)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.eco-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -100px;
+    right: -100px;
+
+    width: 220px;
+    height: 220px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(139, 92, 246, 0.2),
+            transparent 70%
+        );
+
+    opacity: 0;
+
+    transition: opacity 0.35s ease;
+
+    pointer-events: none;
+}
+
+.eco-card:hover {
+    transform: translateY(-10px);
+
+    border-color: var(--purple-light);
+
+    box-shadow:
+        0 18px 50px rgba(139, 92, 246, 0.15);
+}
+
+.eco-card:hover::before {
+    opacity: 1;
+}
+
+.eco-card h3 {
+    position: relative;
+
+    font-size: 1.45rem;
+
+    margin-bottom: 14px;
+
+    z-index: 1;
+}
+
+.eco-card p {
+    position: relative;
+
+    color: var(--text-light);
+
+    line-height: 1.8;
+
+    z-index: 1;
+}
+
+
+/* =====================================================
+   BLOCKCHAIN FEATURE CARD
+   ===================================================== */
+
+.blockchain-card {
+    grid-column: span 2;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139, 92, 246, 0.12),
+            rgba(16, 16, 36, 0.95),
+            rgba(34, 211, 238, 0.05)
+        );
+}
+
+.blockchain-card h3 {
+    font-size: 1.7rem;
+}
+
+
+/* =====================================================
+   BLOCKCHAIN VISUAL
+   ===================================================== */
+
+.blockchain-visual {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 18px;
+
+    margin-top: 35px;
+
+    padding: 20px 0;
+}
+
+.block {
+    position: relative;
+
+    min-width: 125px;
+
+    padding: 18px 22px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(139, 92, 246, 0.16),
+            rgba(59, 130, 246, 0.08)
+        );
+
+    border: 1px solid var(--purple);
+
+    border-radius: 14px;
+
+    color: var(--purple-light);
+
+    font-weight: bold;
+
+    box-shadow:
+        0 0 25px rgba(139, 92, 246, 0.08);
+
+    animation: blockFloat 4s ease-in-out infinite;
+}
+
+.block:nth-child(3) {
+    animation-delay: 0.7s;
+}
+
+.block:nth-child(5) {
+    animation-delay: 1.4s;
+}
+
+@keyframes blockFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+.block-arrow {
+    color: var(--cyan);
+
+    font-size: 1.5rem;
+
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   EXPLORE BUTTONS
+   ===================================================== */
+
+.explore-btn {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 24px;
+
+    padding: 11px 23px;
+
+    border: 1px solid var(--purple);
+
+    border-radius: 30px;
+
+    background:
+        rgba(139, 92, 246, 0.06);
+
+    color: var(--white);
+
+    font-size: 0.9rem;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.explore-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+
+    transition: left 0.5s ease;
+}
+
+.explore-btn:hover {
+    transform: translateY(-3px);
+
+    background: var(--gradient);
+
+    box-shadow:
+        0 8px 25px rgba(139, 92, 246, 0.3);
+}
+
+.explore-btn:hover::before {
+    left: 100%;
+}
+
+
+/* =====================================================
+   POPUP MODAL OVERLAY
+   ===================================================== */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background:
+        rgba(0, 0, 0, 0.78);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    z-index: 2000;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =====================================================
+   POPUP CARD
+   ===================================================== */
+
+.modal-content {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 720px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 38px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #15152f,
+            #080817
+        );
+
+    border: 1px solid var(--purple);
+
+    border-radius: 26px;
+
+    box-shadow:
+        0 25px 100px rgba(0, 0, 0, 0.65),
+        0 0 50px rgba(139, 92, 246, 0.16);
+
+    transform: scale(0.8) translateY(30px);
+
+    transition:
+        transform 0.35s ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1) translateY(0);
+}
+
+
+/* =====================================================
+   CLOSE POPUP BUTTON
+   ===================================================== */
+
+.close-modal {
+    position: absolute;
+
+    top: 18px;
+    right: 20px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    color: var(--white);
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.close-modal:hover {
+    background: var(--purple);
+
+    transform: rotate(90deg);
+}
+
+
+/* =====================================================
+   POPUP CONTENT
+   ===================================================== */
+
+.modal-content h2 {
+    padding-right: 45px;
+
+    margin-bottom: 18px;
+
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+
+    line-height: 1.2;
+
+    background: var(--gradient);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+.modal-content > p {
+    color: var(--text);
+
+    line-height: 1.9;
+
+    margin-bottom: 25px;
+}
+
+
+/* =====================================================
+   POPUP IMAGE
+   ===================================================== */
+
+.modal-image {
+    display: block;
+
+    width: 100%;
+
+    height: 280px;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    margin: 15px 0 28px;
+
+    border: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139, 92, 246, 0.1),
+            rgba(34, 211, 238, 0.08)
+        );
+
+    box-shadow:
+        0 8px 35px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =====================================================
+   POPUP EXAMPLE BOX
+   ===================================================== */
+
+.modal-example {
+    padding: 23px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139, 92, 246, 0.1),
+            rgba(34, 211, 238, 0.04)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+    margin-top: 20px;
+}
+
+.modal-example h3 {
+    color: var(--cyan);
+
+    font-size: 1.1rem;
+
+    margin-bottom: 10px;
+}
+
+.modal-example p {
+    color: var(--text-light);
+
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   POPUP TAGS
+   ===================================================== */
+
+.modal-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.modal-tag {
+    padding: 6px 14px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(34, 211, 238, 0.08);
+
+    border: 1px solid rgba(34, 211, 238, 0.25);
+
+    color: var(--cyan);
+
+    font-size: 0.8rem;
+}
+
+
+/* =====================================================
+   USE CASES
+   ===================================================== */
+
+.use-case-grid {
+    max-width: 1100px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.use-case {
+    padding: 32px 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(23, 23, 53, 0.95),
+            rgba(10, 10, 27, 0.95)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.use-case:hover {
+    transform: translateY(-8px);
+
+    border-color: var(--cyan);
+
+    box-shadow:
+        0 12px 35px rgba(34, 211, 238, 0.1);
+}
+
+.use-case-icon {
+    font-size: 2.6rem;
+
+    margin-bottom: 16px;
+
+    filter:
+        drop-shadow(
+            0 0 12px rgba(139, 92, 246, 0.3)
+        );
+}
+
+.use-case h3 {
+    margin-bottom: 10px;
+}
+
+.use-case p {
+    color: var(--text-light);
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   CALL TO ACTION
+   ===================================================== */
+
+.cta {
+    text-align: center;
+
+    padding: 130px 7%;
+
+    overflow: hidden;
+}
+
+.cta::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 300px;
+
+    left: 50%;
+    top: 30%;
+
+    transform: translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(139, 92, 246, 0.15),
+            transparent 70%
+        );
+
+    filter: blur(30px);
+
+    pointer-events: none;
+}
+
+.cta h2 {
+    position: relative;
+
+    font-size: clamp(2rem, 5vw, 3.5rem);
+
+    margin-bottom: 20px;
+
+    z-index: 1;
+}
+
+.cta p {
+    position: relative;
+
+    max-width: 650px;
+
+    margin: 0 auto 32px;
+
+    color: var(--text-light);
+
+    line-height: 1.8;
+
+    z-index: 1;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+    padding: 30px 7%;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+    text-align: center;
+
+    color: var(--text-light);
+
+    font-size: 0.9rem;
+
+    background: rgba(0, 0, 0, 0.15);
+}
+
+
+/* =====================================================
+   SCROLL REVEAL ANIMATION
+   ===================================================== */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   FLOATING ANIMATION
+   ===================================================== */
+
+.float {
+    animation:
+        floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* =====================================================
+   GLOW ANIMATION
+   ===================================================== */
+
+.glow {
+    animation:
+        glowing 3s ease-in-out infinite;
+}
+
+@keyframes glowing {
+    0% {
+        box-shadow:
+            0 0 10px rgba(139, 92, 246, 0.1);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px rgba(139, 92, 246, 0.3);
+    }
+
+    100% {
+        box-shadow:
+            0 0 10px rgba(139, 92, 246, 0.1);
+    }
+}
+
+
+/* =====================================================
+   POPUP SCROLLBAR
+   ===================================================== */
+
+.modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: var(--purple);
+
+    border-radius: 20px;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN - TABLET
+   ===================================================== */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 18px 5%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        padding: 140px 5% 90px;
+    }
+
+    section {
+        padding: 90px 5%;
+    }
+
+    .timeline {
+        grid-template-columns: 1fr;
+    }
+
+    .ecosystem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .blockchain-card {
+        grid-column: span 1;
+    }
+
+    .use-case-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN - MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 16px 5%;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .connect-wallet {
+        padding: 9px 14px;
+
+        font-size: 0.78rem;
+    }
+
+    .hero {
+        padding: 125px 5% 75px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 0.98rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        gap: 13px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+        width: 100%;
+
+        max-width: 280px;
+    }
+
+    section {
+        padding: 75px 5%;
+    }
+
+    .section-heading {
+        margin-bottom: 45px;
+    }
+
+    .section-heading h2 {
+        font-size: 2rem;
+    }
+
+    .eco-card {
+        padding: 26px 22px;
+    }
+
+    .eco-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .blockchain-visual {
+        flex-direction: column;
+
+        gap: 12px;
+    }
+
+    .block-arrow {
+        transform: rotate(90deg);
+    }
+
+    .use-case-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* ---------- POPUP ---------- */
+
+    .modal {
+        padding: 15px;
+    }
+
+    .modal-content {
+        max-height: 90vh;
+
+        padding: 28px 20px;
+
+        border-radius: 21px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.65rem;
+    }
+
+    .modal-image {
+        height: 200px;
+    }
+
+    .modal-example {
+        padding: 18px;
+    }
+
+    .close-modal {
+        top: 12px;
+        right: 12px;
+
+        width: 34px;
+        height: 34px;
+    }
+
+    .cta {
+        padding: 90px 5%;
+    }
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN - SMALL MOBILE
+   ===================================================== */
+
+@media (max-width: 400px) {
+
+    .logo {
+        font-size: 1.1rem;
+
+        letter-spacing: 2px;
+    }
+
+    .connect-wallet {
+        padding: 8px 11px;
+
+        font-size: 0.72rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .eyebrow {
+        font-size: 0.68rem;
+
+        letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+        font-size: 1.8rem;
+    }
+
+    .modal-content {
+        padding: 25px 16px;
+    }
+
+    .modal-image {
+        height: 170px;
+    }
+}
+
+
+/* =====================================================
+   ACCESSIBILITY: REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+}
